@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'app_style.dart';
 
 class AppTheme {
+  static ThemeData get light => lightTheme;
+
   static ThemeData get lightTheme {
     // Le thème part de AppStyle.primary. Pour changer la couleur globale,
     // on modifie surtout AppStyle.
@@ -59,5 +61,35 @@ class AppTheme {
         ),
       ),
     );
+  }
+
+  static ThemeData get dark {
+    final colorScheme =
+        ColorScheme.fromSeed(
+          seedColor: AppStyle.primary,
+          brightness: Brightness.dark,
+        ).copyWith(
+          primary: AppStyle.primary,
+          secondary: AppStyle.accent,
+          error: AppStyle.error,
+        );
+
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: const Color(0xFF121212),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppStyle.primary,
+          foregroundColor: Colors.white,
+          minimumSize: const Size.fromHeight(48),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      ),
+    );
+  }
+
+  static ThemeMode getThemeMode() {
+    return ThemeMode.light;
   }
 }

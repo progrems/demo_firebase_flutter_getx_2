@@ -1,8 +1,14 @@
+// ignore: unnecessary_library_name
+library root_page;
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../shared_components/buttons/async_button.dart';
 import '../../controllers/root_controller.dart';
+
+// binding
+part '../../bindings/root_binding.dart';
 
 class RootView extends GetView<RootController> {
   const RootView({super.key});

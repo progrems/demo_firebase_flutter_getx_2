@@ -1,10 +1,8 @@
-import 'package:get/get.dart';
-
-import '../controllers/not_found_view_controller.dart';
+part of '../views/screens/not_found_view_screen.dart';
 
 class NotFoundViewBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<NotFoundViewController>(NotFoundViewController.new);
+    Get.lazyPut(() => NotFoundViewController());
   }
 }

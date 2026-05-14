@@ -1,11 +1,24 @@
+// ignore: unnecessary_library_name
+library home_page;
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../config/routes/app_routes.dart';
 import '../../../config/themes/app_style.dart';
 import '../../../shared_components/buttons/async_button.dart';
 import '../../../shared_components/text/simple_text.dart';
 import '../../../shared_components/text/title_text.dart';
-import '../controllers/home_view_controller.dart';
+import '../../../utils/models/user_model.dart';
+import '../../../utils/services/app_service.dart';
+import '../../../utils/services/scaffold_service.dart';
+
+// binding
+part '../bindings/home_view_binding.dart';
+// controller
+part '../controllers/home_view_controller.dart';
 
 class HomePageViewScreen extends GetView<HomeViewController> {
   const HomePageViewScreen({super.key});

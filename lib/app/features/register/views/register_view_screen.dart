@@ -1,3 +1,7 @@
+// ignore: unnecessary_library_name
+library register_page;
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +10,16 @@ import '../../../shared_components/text/title_text.dart';
 import '../../../shared_components/text_form_field/email_tff.dart';
 import '../../../shared_components/text_form_field/name_tff.dart';
 import '../../../shared_components/text_form_field/password_tff.dart';
-import '../controllers/register_view_controller.dart';
+import '../../../utils/mixins/validation_input_mixin.dart';
+import '../../../utils/models/user_model.dart';
+import '../../../utils/services/app_service.dart';
+import '../../../utils/services/scaffold_service.dart';
+import '../../root/controllers/root_controller.dart';
+
+// binding
+part '../bindings/register_view_binding.dart';
+// controller
+part '../controllers/register_view_controller.dart';
 
 class RegisterViewScreen extends GetView<RegisterViewController> {
   const RegisterViewScreen({super.key});

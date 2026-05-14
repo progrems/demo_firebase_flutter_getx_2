@@ -1,51 +1,67 @@
-import 'package:get/get.dart';
+// ignore: use_string_in_part_of_directives
+part of routes;
 
-import '../../features/forgot/bindings/forgot_view_binding.dart';
-import '../../features/forgot/views/forgot_view_screen.dart';
-import '../../features/home/bindings/home_view_binding.dart';
-import '../../features/home/views/home_page_view_screen.dart';
-import '../../features/not_found/bindings/not_found_view_binding.dart';
-import '../../features/not_found/views/screens/not_found_view_screen.dart';
-import '../../features/root/bindings/root_binding.dart';
-import '../../features/root/views/screens/root_view.dart';
-import '../middleware/auth_middleware.dart';
-import 'app_routes.dart';
+/// Contient toute la configuration des pages GetX.
+class AppPages {
+  AppPages._();
 
-abstract class AppPages {
+  /// Première route affichée au lancement.
+  ///
+  /// On garde RootView en premier pour conserver le flow actuel :
+  /// bouton Compte -> popup Login/Register -> Home.
   static const initial = Routes.root;
 
-  // Chaque GetPage relie une route à sa view et au binding qui prépare son controller.
-  static final pages = <GetPage<dynamic>>[
+  static final routes = <GetPage<dynamic>>[
     GetPage(
-      // name = le nom de route utilisé par Get.toNamed / Get.offAllNamed.
-      name: Routes.root,
-      // page = la view affichée pour cette route.
+      name: _Paths.root,
       page: () => const RootView(),
-      // binding = l'injection des controllers/services nécessaires à cette view.
       binding: RootBinding(),
-    ),
-    GetPage(
-      name: Routes.home,
-      page: () => const HomePageViewScreen(),
-      binding: HomeViewBinding(),
-      // Home est protégée : le middleware refuse l'accès si l'email n'est pas vérifié.
-      middlewares: [AuthMiddleware()],
-    ),
-    GetPage(
-      name: Routes.forgot,
-      page: () => const ForgotViewScreen(),
-      binding: ForgotViewBinding(),
-    ),
-    GetPage(
-      name: Routes.notFound,
-      page: () => const NotFoundViewScreen(),
-      binding: NotFoundViewBinding(),
+      preventDuplicates: true,
+      participatesInRootNavigator: true,
+      transitionDuration: Duration.zero,
+      transition: Transition.noTransition,
+      children: [
+        // Login existe comme route enfant pour respecter la structure,
+        // même si le flow principal l'affiche dans le popup.
+        GetPage(
+          name: _Paths.login,
+          preventDuplicates: true,
+          page: () => const LoginViewScreen(),
+          binding: LoginViewBinding(),
+          transitionDuration: Duration.zero,
+          transition: Transition.noTransition,
+        ),
+
+        // Register existe aussi comme route enfant, mais reste utilisé
+        // dans le même popup que Login.
+        GetPage(
+          name: _Paths.register,
+          preventDuplicates: true,
+          page: () => const RegisterViewScreen(),
+          binding: RegisterViewBinding(),
+          transitionDuration: Duration.zero,
+          transition: Transition.noTransition,
+        ),
+
+        GetPage(
+          name: _Paths.home,
+          preventDuplicates: true,
+          page: () => const HomePageViewScreen(),
+          binding: HomeViewBinding(),
+          transitionDuration: Duration.zero,
+          transition: Transition.noTransition,
+          middlewares: [AuthMiddleware()],
+        ),
+
+        GetPage(
+          name: _Paths.forgot,
+          preventDuplicates: true,
+          page: () => const ForgotViewScreen(),
+          binding: ForgotViewBinding(),
+          transitionDuration: Duration.zero,
+          transition: Transition.noTransition,
+        ),
+      ],
     ),
   ];
-
-  static final unknownRoute = GetPage(
-    name: Routes.notFound,
-    page: () => const NotFoundViewScreen(),
-    binding: NotFoundViewBinding(),
-  );
 }

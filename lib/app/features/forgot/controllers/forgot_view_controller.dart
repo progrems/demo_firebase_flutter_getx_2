@@ -1,3 +1,3 @@
-import 'package:get/get.dart';
+part of '../views/forgot_view_screen.dart';
 
-class ForgotViewController extends GetxController {}
+class ForgotViewController extends GetxController with NavigationMixin {}

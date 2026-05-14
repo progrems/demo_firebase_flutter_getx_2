@@ -1,10 +1,8 @@
-import 'package:get/get.dart';
-
-import '../controllers/forgot_view_controller.dart';
+part of '../views/forgot_view_screen.dart';
 
 class ForgotViewBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ForgotViewController>(ForgotViewController.new);
+    Get.lazyPut(() => ForgotViewController());
   }
 }

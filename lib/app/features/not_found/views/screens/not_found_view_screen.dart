@@ -1,9 +1,16 @@
+// ignore: unnecessary_library_name
+library not_found_page;
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../shared_components/text/simple_text.dart';
 import '../../../../shared_components/text/title_text.dart';
-import '../../controllers/not_found_view_controller.dart';
+
+// binding
+part '../../bindings/not_found_view_binding.dart';
+// controller
+part '../../controllers/not_found_view_controller.dart';
 
 class NotFoundViewScreen extends GetView<NotFoundViewController> {
   const NotFoundViewScreen({super.key});

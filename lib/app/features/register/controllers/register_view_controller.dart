@@ -1,20 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../utils/mixins/validation_input_mixin.dart';
-import '../../../utils/models/user_model.dart';
-import '../../../utils/services/scaffold_service.dart';
-import '../../../utils/services/src/auth_service.dart';
-import '../../../utils/services/src/firestore_service.dart';
-import '../../root/controllers/root_controller.dart';
+part of '../views/register_view_screen.dart';
 
 class RegisterViewController extends GetxController with ValidationInputMixin {
   RegisterViewController({
-    required AuthService authService,
-    required FirestoreService firestoreService,
-  }) : _authService = authService,
-       _firestoreService = firestoreService;
+    AuthService? authService,
+    FirestoreService? firestoreService,
+  }) : _authService = authService ?? AuthService(),
+       _firestoreService = firestoreService ?? FirestoreService();
 
   final AuthService _authService;
   final FirestoreService _firestoreService;

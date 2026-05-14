@@ -1,20 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:get/get.dart';
-
-import '../../../config/routes/app_routes.dart';
-import '../../../utils/models/user_model.dart';
-import '../../../utils/services/scaffold_service.dart';
-import '../../../utils/services/src/auth_service.dart';
-import '../../../utils/services/src/firestorage_service.dart';
-import '../../../utils/services/src/firestore_service.dart';
+part of '../views/home_page_view_screen.dart';
 
 class HomeViewController extends GetxController {
   HomeViewController({
-    required AuthService authService,
-    required FirestoreService firestoreService,
-  }) : _authService = authService,
-       _firestoreService = firestoreService;
+    AuthService? authService,
+    FirestoreService? firestoreService,
+  }) : _authService = authService ?? AuthService(),
+       _firestoreService = firestoreService ?? FirestoreService();
 
   final AuthService _authService;
   final FirestoreService _firestoreService;

@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../../config/themes/app_style.dart';
 
 class ScaffoldService {
+  static final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
   static void success(String title, String message) {
     _show(title, message, AppStyle.success);
   }
